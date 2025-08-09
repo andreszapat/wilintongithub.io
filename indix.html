@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Página personal — perfil público" />
+  <title>Perfil — Tu Nombre</title>
+  <style>
+    :root{
+      --bg:#0f1724; /* dark navy */
+      --card:#0b1220;
+      --accent:#06b6d4; /* teal */
+      --muted:#9aa4b2;
+      --glass: rgba(255,255,255,0.04);
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;background:linear-gradient(180deg,var(--bg),#071020);color:#e6eef6}
+    .container{max-width:980px;margin:32px auto;padding:20px}
+    .card{background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));border-radius:16px;padding:26px;box-shadow:0 8px 30px rgba(2,6,23,0.6);display:flex;gap:24px;align-items:center}
+    .avatar{flex:0 0 140px;height:140px;border-radius:12px;background:linear-gradient(135deg,var(--accent),#7c3aed);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:36px;color:white}
+    .main{flex:1}
+    h1{margin:0;font-size:28px}
+    p.lead{margin:6px 0;color:var(--muted)}
+    .badges{margin-top:12px}
+    .badge{display:inline-block;padding:6px 10px;border-radius:999px;background:var(--glass);margin-right:8px;font-size:13px;color:var(--muted)}
+
+    .section{margin-top:22px;background:rgba(255,255,255,0.02);padding:18px;border-radius:12px}
+    .grid{display:grid;grid-template-columns:1fr 340px;gap:18px}
+    .links a{display:flex;align-items:center;gap:10px;padding:10px;border-radius:8px;background:rgba(255,255,255,0.01);text-decoration:none;color:inherit;margin-bottom:8px}
+
+    .projects{display:flex;flex-direction:column;gap:10px}
+    .proj{padding:12px;border-radius:10px;background:linear-gradient(180deg,rgba(255,255,255,0.012),transparent)}
+    .meta{color:var(--muted);font-size:13px}
+
+    footer{margin-top:18px;text-align:center;color:var(--muted);font-size:13px}
+
+    /* responsive */
+    @media (max-width:880px){
+      .card{flex-direction:row;gap:12px}
+      .grid{grid-template-columns:1fr;}
+      .avatar{flex:0 0 100px;height:100px;font-size:28px}
+    }
+
+    /* small utilities */
+    .btn{display:inline-block;padding:10px 14px;border-radius:10px;background:linear-gradient(90deg,var(--accent),#7c3aed);color:#041124;text-decoration:none;font-weight:600}
+    .btn-ghost{background:transparent;border:1px solid rgba(255,255,255,0.04);color:var(--accent)}
+
+    input,textarea{width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.03);background:transparent;color:inherit}
+    label{font-size:13px;color:var(--muted)}
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <div class="avatar" id="avatar">WM</div>
+      <div class="main">
+        <h1 id="name">Wilington Mina</h1>
+        <div class="meta" id="role">Estudiante / Afín a ética y filosofía</div>
+        <p class="lead" id="about">Soy una persona apasionada por la tecnología, la filosofía y el aprendizaje continuo. Aquí encontrarás una selección de mis proyectos públicos y formas de contacto.</p>
+        <div class="badges">
+          <span class="badge">Desarrollo web</span>
+          <span class="badge">Inteligencia Artificial</span>
+          <span class="badge">Filosofía</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="section grid">
+      <div>
+        <h3>Proyectos</h3>
+        <div class="projects" id="projects">
+          <div class="proj">
+            <div style="display:flex;justify-content:space-between;align-items:center"><strong>Proyecto ejemplo</strong><span class="meta">2024</span></div>
+            <div class="meta">Breve descripción del proyecto, tecnologías usadas y enlace.</div>
+            <div style="margin-top:8px"><a class="btn-ghost" href="#" onclick="openLink(event,'#')">Ver repo</a></div>
+          </div>
+        </div>
+
+        <div style="margin-top:14px">
+          <h3>Contacto público</h3>
+          <div class="links">
+            <a href="mailto:tu@email.com" id="emailLink">✉️ Correo: <span style="margin-left:6px" id="email">tu@email.com</span></a>
+            <a href="#" id="linkedinLink" onclick="openLink(event,'https://linkedin.com')">🔗 LinkedIn</a>
+            <a href="#" id="twitterLink" onclick="openLink(event,'https://twitter.com')">🐦 Twitter</a>
+          </div>
+
+          <div style="margin-top:10px">
+            <button class="btn" id="downloadVcard">Descargar vCard</button>
+            <button class="btn btn-ghost" id="editBtn">Editar en página</button>
+          </div>
+        </div>
+      </div>
+
+      <aside>
+        <h3>Sobre mí</h3>
+        <p class="meta">Rellena esta sección con lo que quieras mostrar públicamente: formación, intereses, disponibilidad para trabajo, idioma, etc.</p>
+
+        <div style="margin-top:12px">
+          <label for="publicNote">Nota pública (se ve en la tarjeta)</label>
+          <textarea id="publicNote" rows="4">Soy una persona apasionada por la tecnología, la filosofía y el aprendizaje continuo.</textarea>
+          <div style="margin-top:8px">
+            <a class="btn" id="saveNote">Guardar nota</a>
+          </div>
+        </div>
+
+        <div style="margin-top:16px">
+          <h4>Servicios</h4>
+          <div class="meta">Consultoría ligera • Charlas • Proyectos freelance</div>
+        </div>
+      </aside>
+    </div>
+
+    <footer>
+      Hecho con ❤️ — Personaliza este archivo antes de subirlo a GitHub. No publiques datos sensibles.
+    </footer>
+  </div>
+
+  <script>
+    // Pequeñas utilidades para que el HTML sea "activo" y útil.
+    function openLink(e,url){e.preventDefault();window.open(url,'_blank')}
+
+    // Reemplaza los datos por defecto si el usuario cambia la nota.
+    document.getElementById('saveNote').addEventListener('click', function(){
+      const note = document.getElementById('publicNote').value.trim();
+      document.getElementById('about').textContent = note || 'Sin descripción pública.';
+      alert('Nota actualizada (solo en esta página local). Guarda el archivo y súbelo a GitHub para publicar.');
+    });
+
+    // vCard simple (descarga generada en el navegador)
+    document.getElementById('downloadVcard').addEventListener('click', function(){
+      const fullName = document.getElementById('name').textContent.trim();
+      const email = document.getElementById('email').textContent.trim();
+      const role = document.getElementById('role').textContent.trim();
+      const vcard = [
+        'BEGIN:VCARD',
+        'VERSION:3.0',
+        `FN:${fullName}`,
+        `TITLE:${role}`,
+        `EMAIL;TYPE=INTERNET:${email}`,
+        'END:VCARD'
+      ].join('\r\n');
+      const blob = new Blob([vcard],{type:'text/vcard'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url; a.download = (fullName.replace(/\s+/g,'_') || 'perfil') + '.vcf';
+      document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
+    });
+
+    // quick-edit button: open a minimal prompt to change name/email for demo
+    document.getElementById('editBtn').addEventListener('click', function(){
+      const newName = prompt('Tu nombre (visible públicamente):', document.getElementById('name').textContent);
+      if(newName!==null){
+        document.getElementById('name').textContent = newName.trim() || 'Tu nombre';
+        const initials = newName.split(' ').map(p=>p[0]||'').join('').substring(0,2).toUpperCase();
+        document.getElementById('avatar').textContent = initials || 'ME';
+      }
+      const newEmail = prompt('Correo público (ejemplo: correo@ejemplo.com):', document.getElementById('email').textContent);
+      if(newEmail!==null){
+        document.getElementById('email').textContent = newEmail.trim() || 'correo@ejemplo.com';
+        document.getElementById('emailLink').href = 'mailto:'+document.getElementById('email').textContent;
+      }
+    });
+
+    // siempre válido HTML5, sin dependencias externas.
+  </script>
+</body>
+</html>
